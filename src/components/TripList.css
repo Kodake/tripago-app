@@ -16,3 +16,24 @@
     list-style-type: none;
     margin: 20px 0px;
 }
+
+.trip-list .filters {
+    display: flex;
+    gap: 10px;
+}
+
+.trip-list button {
+    padding: 10px;
+    font-size: 16px;
+    flex-grow: 1;
+}
+
+.trip-list select {
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 10px auto;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 1.2em;
+}
