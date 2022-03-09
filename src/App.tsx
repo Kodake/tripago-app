@@ -7,7 +7,7 @@ const App = () => {
   const [showTrips, setShowTrips] = useState(true)
   return (
     <div className='App'>
-      <button onClick={() => setShowTrips(false)}>Hide Trips</button>
+      <button className='btn-app' onClick={() => setShowTrips(false)}>Hide Trips</button>
       {showTrips && <TripList />}
     </div>
   )

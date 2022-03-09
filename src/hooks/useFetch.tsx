@@ -1,15 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Trip } from "../interfaces/appInterfaces";
 
-export const useFetch = (url: string) => {
+export const useFetch = (url: string, _options: any) => {
     const [data, setData] = useState<Trip[]>([]);
     const [isPending, setIsPending] = useState(false);
     const [error, setError] = useState<string | null>(null)
+
+    const options = useRef(_options).current;
 
     useEffect(() => {
         const controller = new AbortController();
 
         const fetchData = async () => {
+            console.log(options);
+            
             setIsPending(true);
 
             try {
@@ -38,7 +42,7 @@ export const useFetch = (url: string) => {
         return () => {
             controller.abort();
         }
-    }, [url, setData]);
+    }, [url, setData, options]);
 
     return { data, isPending, error }
 

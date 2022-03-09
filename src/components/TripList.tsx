@@ -12,7 +12,7 @@ import './TripList.css';
 const TripList = () => {
 
     const { url, setUrl } = useUrl();
-    const { data, isPending, error } = useFetch(url);
+    const { data, isPending, error } = useFetch(url, {type: 'GET'});
 
     return (
         <div className='trip-list'>
