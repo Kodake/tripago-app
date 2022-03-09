@@ -1,50 +1,37 @@
 import { useEffect, useState } from "react";
-import './TripList.css';
+import { useFetch } from "../hooks/useFetch";
+import { useUrl } from "../hooks/useUrl";
+import { Trip } from "../interfaces/appInterfaces";
+import FilterInput from "./FilterInput";
+import SelectInput from "./SelectInput";
 
-interface Trip {
-    id: number;
-    title: string;
-    price: string;
-}
+import './TripList.css';
 
 const TripList = () => {
 
-    const [trips, setTrips] = useState([]);
-    const [url, setUrl] = useState('http://localhost:3000/trips');
-    
-    useEffect(() => {
-        fetch(url)
-            .then(data => data.json())
-            .then(json => setTrips(json));
-    }, [url]);
+    const { url, setUrl } = useUrl();
+    const { data, isPending } = useFetch(url);
 
     return (
         <div className='trip-list'>
             <h2>TripList</h2>
 
-            <label>
-                <span>Filter:</span>
-                <select className='select' onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setUrl(e.target.value)}>
-                    <option value={'http://localhost:3000/trips'}>All Trips</option>
-                    <option value={'http://localhost:3000/trips?loc=Europe'}>European Trips</option>
-                </select>
-            </label>
+            <SelectInput onChange={setUrl} />
 
-            <div className='filters'>
-                <button onClick={() => setUrl('http://localhost:3000/trips')}>All Trips</button>
+            <FilterInput onClick={setUrl} />
 
-                <button onClick={() => setUrl('http://localhost:3000/trips?loc=Europe')} >European Trips</button>
-            </div>
+            {isPending && <div>Loading trips...</div>}
 
             <ul>
-                {trips.map((trip: Trip) => {
-                    return (
-                        <li key={trip.id}>
-                            <h3>{trip.title}</h3>
-                            <p>{trip.price}</p>
-                        </li>
-                    )
-                })}
+                {data.length > 0 &&
+                    data.map((trip: Trip) => {
+                        return (
+                            <li key={trip.id}>
+                                <h3>{trip.title}</h3>
+                                <p>{trip.price}</p>
+                            </li>
+                        )
+                    })}
             </ul>
         </div>
     )

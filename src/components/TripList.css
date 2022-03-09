@@ -26,6 +26,9 @@
     padding: 10px;
     font-size: 16px;
     flex-grow: 1;
+    font-weight: bold;
+    color: white;
+    background-color: #fca311;
 }
 
 .trip-list select {
