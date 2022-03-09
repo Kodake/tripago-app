@@ -54,9 +54,8 @@
 }
 
 .trip-list select {
-    display: block;
     text-align: left;
-    width: 100%;
+    width: 480px;
     margin: 10px auto;
     padding: 10px;
     box-sizing: border-box;

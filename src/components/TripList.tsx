@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { useFetch } from "../hooks/useFetch";
 import { useUrl } from "../hooks/useUrl";
 import { Trip } from "../interfaces/appInterfaces";
+import ErrorAlert from "./ErrorAlert";
 import FilterInput from "./FilterInput";
+import LoadingSpinner from "./LoadingSpinner";
 import SelectInput from "./SelectInput";
 
 import './TripList.css';
@@ -10,7 +12,7 @@ import './TripList.css';
 const TripList = () => {
 
     const { url, setUrl } = useUrl();
-    const { data, isPending } = useFetch(url);
+    const { data, isPending, error } = useFetch(url);
 
     return (
         <div className='trip-list'>
@@ -20,7 +22,9 @@ const TripList = () => {
 
             <FilterInput onClick={setUrl} />
 
-            {isPending && <div>Loading trips...</div>}
+            {isPending && <LoadingSpinner />}
+
+            {error && <ErrorAlert error={error} />}
 
             <ul>
                 {data.length > 0 &&
