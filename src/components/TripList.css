@@ -1,6 +1,7 @@
 .trip-list {
     width: 480px;
     margin: 60px auto;
+    cursor: pointer;
 }
 
 .trip-list ul {
@@ -17,6 +18,17 @@
     margin: 20px 0px;
 }
 
+.trip-list li:hover {
+    border: 1px solid '#e4e4e4';
+    box-sizing: border-box;
+    padding: 10px;
+    box-shadow: 5px 5px 6px 6px rgba(0, 0, 0, 0.05);
+    border-radius: none;
+    list-style-type: none;
+    margin: 20px 0px;
+    background-color: #e5e5e5;
+}
+
 .trip-list .filters {
     display: flex;
     gap: 10px;
@@ -31,6 +43,16 @@
     background-color: #fca311;
 }
 
+.trip-list button:hover {
+    padding: 10px;
+    font-size: 16px;
+    flex-grow: 1;
+    font-weight: bold;
+    color: black;
+    background-color: #f48c06;
+    cursor: pointer;
+}
+
 .trip-list select {
     display: block;
     text-align: left;
@@ -39,4 +61,5 @@
     padding: 10px;
     box-sizing: border-box;
     font-size: 1.2em;
+    cursor: pointer;
 }
